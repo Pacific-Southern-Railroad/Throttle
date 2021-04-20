@@ -5,5 +5,7 @@ __recovery/*
 Win32/Release/*
 Win32/Debug/*
 Win32/Simulation/*
-PSRYProject.stat
-PSRYProject.res
+*.stat
+*.res
+
+
