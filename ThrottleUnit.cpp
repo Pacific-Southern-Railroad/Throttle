@@ -285,3 +285,10 @@ void __fastcall TThrottle::ReverseClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TThrottle::BellMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          int X, int Y)
+{
+	WriteServer("Bell", Block->Text, "");
+}
+//---------------------------------------------------------------------------
+

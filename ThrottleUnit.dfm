@@ -315,7 +315,7 @@ object Throttle: TThrottle
     object Horn: TButton
       Left = 8
       Top = 188
-      Width = 57
+      Width = 41
       Height = 22
       Caption = 'Horn'
       TabOrder = 4
@@ -323,11 +323,11 @@ object Throttle: TThrottle
       OnMouseUp = HornMouseUp
     end
     object Headlight: TButton
-      Left = 86
+      Left = 105
       Top = 188
-      Width = 65
+      Width = 46
       Height = 22
-      Caption = 'Headlight'
+      Caption = 'Light'
       TabOrder = 5
       OnMouseDown = HeadlightMouseDown
     end
@@ -355,9 +355,18 @@ object Throttle: TThrottle
       TabOrder = 7
       OnClick = SelectClick
     end
+    object Bell: TButton
+      Left = 55
+      Top = 188
+      Width = 44
+      Height = 22
+      Caption = 'Bell'
+      TabOrder = 8
+      OnMouseDown = BellMouseDown
+    end
   end
   object SignUp: TPanel
-    Left = 44
+    Left = 42
     Top = 56
     Width = 109
     Height = 132
@@ -474,12 +483,12 @@ object Throttle: TThrottle
     Height = 100
     Width = 20
     Left = 8
-    Top = 184
+    Top = 216
   end
   object Timer: TTimer
     Interval = 500
     OnTimer = TimerTimer
     Left = 120
-    Top = 200
+    Top = 224
   end
 end

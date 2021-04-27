@@ -50,6 +50,7 @@ __published:	// IDE-managed Components
 	TLabel *NotAvailable;
 	TTimer *Timer;
 	TSpeedButton *Reverse;
+	TButton *Bell;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall TrackBarChange(TObject *Sender);
 	void __fastcall ConnectClick(TObject *Sender);
@@ -70,6 +71,8 @@ __published:	// IDE-managed Components
           int X, int Y);
 	void __fastcall ForwardClick(TObject *Sender);
 	void __fastcall ReverseClick(TObject *Sender);
+	void __fastcall BellMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          int X, int Y);
 
 
 private:	// User declarations
