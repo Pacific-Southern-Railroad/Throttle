@@ -4,7 +4,7 @@ object Throttle: TThrottle
   BorderStyle = bsToolWindow
   Caption = 'PSRY Throttle'
   ClientHeight = 250
-  ClientWidth = 207
+  ClientWidth = 213
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,13 +21,14 @@ object Throttle: TThrottle
   object Controls: TPanel
     Left = 0
     Top = 0
-    Width = 207
+    Width = 213
     Height = 250
     Align = alClient
     Color = clInfoBk
     ParentBackground = False
     TabOrder = 0
     Visible = False
+    ExplicitWidth = 207
     object btnStop: TSpeedButton
       Left = 44
       Top = 152
@@ -366,30 +367,30 @@ object Throttle: TThrottle
     end
   end
   object SignUp: TPanel
-    Left = 42
-    Top = 56
-    Width = 109
+    Left = 49
+    Top = 50
+    Width = 102
     Height = 132
     Color = clYellow
     ParentBackground = False
     TabOrder = 1
     object Label5: TLabel
-      Left = 29
+      Left = 21
       Top = 7
       Width = 52
       Height = 13
       Caption = 'IP Address'
     end
     object Label7: TLabel
-      Left = 40
+      Left = 28
       Top = 46
       Width = 27
       Height = 13
       Caption = 'Name'
     end
     object Connect: TButton
-      Left = 24
-      Top = 90
+      Left = 16
+      Top = 91
       Width = 61
       Height = 25
       Caption = 'Connect'
@@ -397,7 +398,7 @@ object Throttle: TThrottle
       OnClick = ConnectClick
     end
     object IPAddress: TMemo
-      Left = 11
+      Left = 3
       Top = 26
       Width = 86
       Height = 19
@@ -406,8 +407,8 @@ object Throttle: TThrottle
       TabOrder = 1
     end
     object Name: TMemo
-      Left = 10
-      Top = 64
+      Left = 2
+      Top = 65
       Width = 87
       Height = 20
       CharCase = ecUpperCase
