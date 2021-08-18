@@ -3,8 +3,8 @@ object Throttle: TThrottle
   Top = 0
   BorderStyle = bsToolWindow
   Caption = 'PSRY Throttle'
-  ClientHeight = 250
-  ClientWidth = 213
+  ClientHeight = 293
+  ClientWidth = 207
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,14 +21,13 @@ object Throttle: TThrottle
   object Controls: TPanel
     Left = 0
     Top = 0
-    Width = 213
-    Height = 250
+    Width = 207
+    Height = 293
     Align = alClient
     Color = clInfoBk
     ParentBackground = False
     TabOrder = 0
     Visible = False
-    ExplicitWidth = 207
     object btnStop: TSpeedButton
       Left = 44
       Top = 152
@@ -38,8 +37,8 @@ object Throttle: TThrottle
       OnClick = btnStopClick
     end
     object Signal: TImage
-      Left = 18
-      Top = 10
+      Left = 16
+      Top = 5
       Width = 20
       Height = 100
       Picture.Data = {
@@ -283,6 +282,26 @@ object Throttle: TThrottle
       Caption = 'Reverse'
       OnClick = ReverseClick
     end
+    object SigSpeed: TLabel
+      Left = 15
+      Top = 106
+      Width = 7
+      Height = 16
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object AddressInUse: TLabel
+      Left = 58
+      Top = 264
+      Width = 67
+      Height = 13
+      Caption = 'AddressInUse'
+    end
     object Loco: TEdit
       Left = 85
       Top = 10
@@ -347,14 +366,14 @@ object Throttle: TThrottle
       TickMarks = tmBoth
       OnChange = TrackBarChange
     end
-    object Select: TButton
+    object Release: TButton
       Left = 44
       Top = 220
       Width = 65
       Height = 22
-      Caption = 'Select'
+      Caption = 'Release'
       TabOrder = 7
-      OnClick = SelectClick
+      OnClick = ReleaseClick
     end
     object Bell: TButton
       Left = 55
@@ -367,30 +386,23 @@ object Throttle: TThrottle
     end
   end
   object SignUp: TPanel
-    Left = 49
-    Top = 50
-    Width = 102
-    Height = 132
-    Color = clYellow
+    Left = 42
+    Top = 48
+    Width = 109
+    Height = 140
+    Color = clCream
     ParentBackground = False
     TabOrder = 1
-    object Label5: TLabel
-      Left = 21
-      Top = 7
-      Width = 52
-      Height = 13
-      Caption = 'IP Address'
-    end
     object Label7: TLabel
-      Left = 28
-      Top = 46
+      Left = 38
+      Top = 24
       Width = 27
       Height = 13
       Caption = 'Name'
     end
     object Connect: TButton
-      Left = 16
-      Top = 91
+      Left = 24
+      Top = 90
       Width = 61
       Height = 25
       Caption = 'Connect'
@@ -398,17 +410,20 @@ object Throttle: TThrottle
       OnClick = ConnectClick
     end
     object IPAddress: TMemo
-      Left = 3
-      Top = 26
+      Left = 10
+      Top = 18
       Width = 86
       Height = 19
       Lines.Strings = (
         '')
       TabOrder = 1
+      Visible = False
+      WantReturns = False
+      WordWrap = False
     end
     object Name: TMemo
-      Left = 2
-      Top = 65
+      Left = 10
+      Top = 50
       Width = 87
       Height = 20
       CharCase = ecUpperCase
@@ -420,11 +435,11 @@ object Throttle: TThrottle
     end
   end
   object SelectLoco: TPanel
-    Left = 44
+    Left = 42
     Top = 64
     Width = 109
     Height = 110
-    Color = clCream
+    Color = clYellow
     ParentBackground = False
     TabOrder = 2
     Visible = False
@@ -437,7 +452,7 @@ object Throttle: TThrottle
     end
     object NotAvailable: TLabel
       Left = 24
-      Top = 81
+      Top = 88
       Width = 63
       Height = 13
       Caption = 'Not Available'
@@ -446,7 +461,7 @@ object Throttle: TThrottle
     object Engine: TEdit
       Left = 27
       Top = 20
-      Width = 52
+      Width = 54
       Height = 24
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -459,8 +474,8 @@ object Throttle: TThrottle
       TabOrder = 0
     end
     object ConnectLoco: TButton
-      Left = 27
-      Top = 50
+      Left = 29
+      Top = 57
       Width = 54
       Height = 25
       Caption = 'Connect'

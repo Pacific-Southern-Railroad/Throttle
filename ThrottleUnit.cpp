@@ -66,18 +66,38 @@ void __fastcall TThrottle::TrackBarChange(TObject *Sender)
 
 void __fastcall TThrottle::ConnectClick(TObject *Sender)
 {
-	ClientSocket->Address = IPAddress->Lines->Text;
+	String Name = IPAddress->Lines->Text;	//initialized from file
+	String Address;
+	hostent* HostEntity;
+	wchar_t* WChars = Name.c_str();      	//pointer to String data
+	char Chars[20];                         //character buffer
+
+	for(int i = 0; i < Name.Length(); i++)  //convert data to characters
+	{
+		Chars[i] = (char)WChars[i];
+	}
+
+	HostEntity = gethostbyname(Chars);      //get IP address
+	Address = inet_ntoa(*(in_addr*)HostEntity->h_addr_list[0]);
+	AddressInUse->Caption = Address;
+	ClientSocket->Address = Address;
 	ClientSocket->Active = true;
+	Controls->Visible = true;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TThrottle::SelectClick(TObject *Sender)
+void __fastcall TThrottle::ReleaseClick(TObject *Sender)
 {
 	if(Block->Text != "")
 		WriteServer("Drop", Block->Text, "");
 	SelectLoco->Visible = true;
-	Controls->Visible = false;
 	NotAvailable->Visible = false;
+	Loco->Text = "";
+	Block->Text = "";
+	Train->Text = "";
+    Aspect = "";
+	SetSignal();
+	SigSpeed->Caption = "0";
 	Engine->Text = "";
 	Engine->SetFocus();
 }
@@ -106,7 +126,6 @@ void __fastcall TThrottle::SignalClick(TObject *Sender)
 //---------------------------------------------------------------------------
 
 void __fastcall TThrottle::ClientSocketConnect(TObject *Sender, TCustomWinSocket *Socket)
-
 {
 	SelectLoco->Visible = true;
 	SignUp->Visible = false;
@@ -119,7 +138,6 @@ void __fastcall TThrottle::FormClose(TObject *Sender, TCloseAction &Action)
 {
 	if(Controls->Visible && Block->Text != "")
 		WriteServer("Drop", Block->Text, "");
-	IPAddress->Lines->SaveToFile("../TextFiles/IP Address.txt");
 	Name->Lines->SaveToFile("../TextFiles/Name.txt");
 }
 //---------------------------------------------------------------------------
@@ -171,13 +189,16 @@ void __fastcall TThrottle::ClientSocketRead(TObject *Sender, TCustomWinSocket *S
 		{
 			Aspect = InMessage.SubString(20, 9).TrimRight();
 			SetSignal();
+            SigSpeed->Caption = InMessage.SubString(30, 9).TrimRight();
 		}
 		else if(Type == "Drop")
 		{
 			Loco->Text = "";
 			Block->Text = "";
 			Train->Text = "";
-			Controls->Visible = false;
+			Aspect = "";
+			SetSignal();
+			SigSpeed->Caption = "0";
 			SelectLoco->Visible = true;
 			NotAvailable->Visible = false;
 			Engine->Text = "";
@@ -291,4 +312,5 @@ void __fastcall TThrottle::BellMouseDown(TObject *Sender, TMouseButton Button, T
 	WriteServer("Bell", Block->Text, "");
 }
 //---------------------------------------------------------------------------
+
 

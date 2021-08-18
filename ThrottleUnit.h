@@ -33,13 +33,12 @@ __published:	// IDE-managed Components
 	TLabel *Label2;
 	TLabel *Label3;
 	TLabel *Label4;
-	TLabel *Label5;
 	TClientSocket *ClientSocket;
 	TImageList *CabSignals;
 	TPanel *Controls;
 	TPanel *SignUp;
 	TTrackBar *TrackBar;
-	TButton *Select;
+	TButton *Release;
 	TPanel *SelectLoco;
 	TEdit *Engine;
 	TButton *ConnectLoco;
@@ -51,10 +50,12 @@ __published:	// IDE-managed Components
 	TTimer *Timer;
 	TSpeedButton *Reverse;
 	TButton *Bell;
+	TLabel *SigSpeed;
+	TLabel *AddressInUse;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall TrackBarChange(TObject *Sender);
 	void __fastcall ConnectClick(TObject *Sender);
-	void __fastcall SelectClick(TObject *Sender);
+	void __fastcall ReleaseClick(TObject *Sender);
 	void __fastcall ConnectLocoClick(TObject *Sender);
 	void __fastcall btnStopClick(TObject *Sender);
 	void __fastcall SignalClick(TObject *Sender);
