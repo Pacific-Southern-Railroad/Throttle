@@ -309,6 +309,7 @@ object Throttle: TThrottle
       Height = 21
       Color = clWhite
       NumbersOnly = True
+      ReadOnly = True
       TabOrder = 0
     end
     object Speed: TEdit
@@ -316,6 +317,7 @@ object Throttle: TThrottle
       Top = 91
       Width = 57
       Height = 21
+      ReadOnly = True
       TabOrder = 1
     end
     object Train: TEdit
@@ -323,6 +325,7 @@ object Throttle: TThrottle
       Top = 37
       Width = 57
       Height = 21
+      ReadOnly = True
       TabOrder = 2
     end
     object Block: TEdit
@@ -330,6 +333,7 @@ object Throttle: TThrottle
       Top = 64
       Width = 57
       Height = 21
+      ReadOnly = True
       TabOrder = 3
     end
     object Horn: TButton
@@ -357,6 +361,7 @@ object Throttle: TThrottle
       Width = 44
       Height = 250
       BorderWidth = 2
+      Enabled = False
       LineSize = 5
       Max = 126
       Orientation = trVertical

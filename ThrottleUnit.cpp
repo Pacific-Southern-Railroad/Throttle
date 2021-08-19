@@ -88,6 +88,8 @@ void __fastcall TThrottle::ConnectClick(TObject *Sender)
 
 void __fastcall TThrottle::ReleaseClick(TObject *Sender)
 {
+	TrackBar->Position = 126;
+	TrackBar->Enabled = false;
 	if(Block->Text != "")
 		WriteServer("Drop", Block->Text, "");
 	SelectLoco->Visible = true;
@@ -176,6 +178,7 @@ void __fastcall TThrottle::ClientSocketRead(TObject *Sender, TCustomWinSocket *S
 			SelectLoco->Visible = false;
 			Controls->Visible = true;
 			TrackBar->Position = 126;
+            TrackBar->Enabled = true;
 			Loco->Text = Engine->Text;
 			Block->Text = InMessage.SubString(20, 9).TrimRight();
             Train->Text = InMessage.SubString(30, 9).TrimRight();
@@ -197,6 +200,8 @@ void __fastcall TThrottle::ClientSocketRead(TObject *Sender, TCustomWinSocket *S
 			Block->Text = "";
 			Train->Text = "";
 			Aspect = "";
+			TrackBar->Position = 126;
+            TrackBar->Enabled = false;
 			SetSignal();
 			SigSpeed->Caption = "0";
 			SelectLoco->Visible = true;
@@ -246,13 +251,13 @@ void __fastcall TThrottle::ClientSocketDisconnect(TObject *Sender, TCustomWinSoc
 
 void __fastcall TThrottle::TimerTimer(TObject *Sender)
 {
-	if(Aspect == "Stop")
+	if(Aspect == "Stop" || Aspect == "")
 	{
 		TrackBar->Position = 126;
 		TrackBar->Enabled = false;
 	}
 	else
-        TrackBar->Enabled = true;
+		TrackBar->Enabled = true;
 	if(DirChange)
 	{
 		DirChange = false;
@@ -263,7 +268,7 @@ void __fastcall TThrottle::TimerTimer(TObject *Sender)
 			Dir = "Rev";
 		WriteServer("Dir", Block->Text, Dir);
     }
-	else if(SpeedChange)
+	else if(SpeedChange && !SelectLoco->Visible)
 	{
 		SpeedChange = false;
 		Speed->Text = 126 - TrackBar->Position;
@@ -312,5 +317,6 @@ void __fastcall TThrottle::BellMouseDown(TObject *Sender, TMouseButton Button, T
 	WriteServer("Bell", Block->Text, "");
 }
 //---------------------------------------------------------------------------
+
 
 
