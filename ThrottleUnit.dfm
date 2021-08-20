@@ -435,13 +435,13 @@ object Throttle: TThrottle
       Lines.Strings = (
         ''
         '')
-      MaxLength = 10
+      MaxLength = 8
       TabOrder = 2
     end
   end
   object SelectLoco: TPanel
     Left = 42
-    Top = 64
+    Top = 118
     Width = 109
     Height = 110
     Color = clYellow
