@@ -38,6 +38,8 @@ void __fastcall TThrottle::FormCreate(TObject *Sender)
 
 	Aspect = "Stop";
 	SetSignal();
+	ClientID = "XXXX";
+
 }
 //---------------------------------------------------------------------------
 
@@ -67,8 +69,8 @@ void __fastcall TThrottle::TrackBarChange(TObject *Sender)
 void __fastcall TThrottle::ConnectClick(TObject *Sender)
 {
 	String Name = IPAddress->Lines->Text;	//initialized from file
-	String Address;
-	hostent* HostEntity;
+	String Address = Name;
+/*	hostent* HostEntity;
 	wchar_t* WChars = Name.c_str();      	//pointer to String data
 	char Chars[20];                         //character buffer
 
@@ -78,7 +80,7 @@ void __fastcall TThrottle::ConnectClick(TObject *Sender)
 	}
 
 	HostEntity = gethostbyname(Chars);      //get IP address
-	Address = inet_ntoa(*(in_addr*)HostEntity->h_addr_list[0]);
+	Address = inet_ntoa(*(in_addr*)HostEntity->h_addr_list[0]); */
 	AddressInUse->Caption = Address;
 	ClientSocket->Address = Address;
 	ClientSocket->Active = true;
@@ -129,10 +131,7 @@ void __fastcall TThrottle::SignalClick(TObject *Sender)
 
 void __fastcall TThrottle::ClientSocketConnect(TObject *Sender, TCustomWinSocket *Socket)
 {
-	SelectLoco->Visible = true;
-	SignUp->Visible = false;
-	Engine->SetFocus();
-    Engine->Text = "";
+	WriteServer("", "", "");
 }
 //---------------------------------------------------------------------------
 
@@ -146,13 +145,14 @@ void __fastcall TThrottle::FormClose(TObject *Sender, TCloseAction &Action)
 
 void TThrottle::WriteServer(String Type, String A, String B)
 {
-	String OutMessage = AnsiString::StringOfChar(' ', 45);
+	String OutMessage = AnsiString::StringOfChar(' ', 55);
 
-	OutMessage.Insert1(Name->Lines->Text, 1);
-	OutMessage.Insert(Type, 10);
-	OutMessage.Insert(A, 20);
-	OutMessage.Insert(B, 30);
-	OutMessage.Insert("##", 40);
+	OutMessage.Insert(ClientID, 1);
+	OutMessage.Insert1(Name->Lines->Text, 10);
+	OutMessage.Insert(Type, 20);
+	OutMessage.Insert(A, 30);
+	OutMessage.Insert(B, 40);
+	OutMessage.Insert("##", 50);
 	OutMessage = OutMessage.TrimRight();
 
 	ClientSocket->Socket->SendText(OutMessage);
@@ -163,10 +163,17 @@ void __fastcall TThrottle::ClientSocketRead(TObject *Sender, TCustomWinSocket *S
 
 {
 	String InMessage = Socket->ReceiveText();
-	String NameBack = InMessage.SubString1(1, 9).TrimRight();
+	String IDBack = InMessage.SubString1(1, 9).TrimRight();
 	String Type = InMessage.SubString(10, 9).TrimRight();
-
-	if(NameBack == Name->Text)             //Message if for this throttle
+ 	if(IDBack == "XXXX" && ClientID == "XXXX")
+	{
+		ClientID = InMessage.SubString(20, 9).TrimRight();;
+		SelectLoco->Visible = true;
+		SignUp->Visible = false;
+		Engine->SetFocus();
+		Engine->Text = "";
+	}
+	if(IDBack == ClientID)             //if message for this throttle
 	{
 		if(Type == "NoLoco")
 		{
@@ -209,6 +216,7 @@ void __fastcall TThrottle::ClientSocketRead(TObject *Sender, TCustomWinSocket *S
 			Engine->Text = "";
 		}
 	}
+
 }
 //---------------------------------------------------------------------------
 void TThrottle::SetSignal()

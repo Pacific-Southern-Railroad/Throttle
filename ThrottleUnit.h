@@ -82,6 +82,7 @@ private:	// User declarations
 	void WriteServer(String Type, String A, String B);
 	void SetSignal();
 
+    String ClientID;    //assigned by server
 	String Aspect;      //aspect for cab signal
 	bool PRRAspects;  //true for PRR
 	bool SpeedChange;  //true when slide bar changes

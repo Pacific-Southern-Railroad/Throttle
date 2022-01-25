@@ -441,7 +441,7 @@ object Throttle: TThrottle
   end
   object SelectLoco: TPanel
     Left = 42
-    Top = 118
+    Top = 64
     Width = 109
     Height = 110
     Color = clYellow

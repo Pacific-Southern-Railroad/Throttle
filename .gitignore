@@ -9,3 +9,7 @@ Win32/Simulation/*
 *.res
 
 
+*.astcache
+*.astinfo
+*.txt
+*.txt
