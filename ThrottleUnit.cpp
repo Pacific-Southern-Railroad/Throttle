@@ -107,7 +107,7 @@ void __fastcall TThrottle::ReleaseClick(TObject *Sender)
 }
 //--------------------------------------------------------------------------
 
-void __fastcall TThrottle::EnterClick(TObject *Sender)
+void __fastcall TThrottle::ConnectLocoClick(TObject *Sender)
 {
 	if(Engine->Text != "")
 	{

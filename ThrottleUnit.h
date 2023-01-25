@@ -41,7 +41,7 @@ __published:	// IDE-managed Components
 	TButton *Release;
 	TPanel *SelectLoco;
 	TEdit *Engine;
-	TButton *Enter;
+	TButton *ConnectLoco;
 	TLabel *Label6;
 	TMemo *IPAddress;
 	TLabel *Label7;
@@ -56,7 +56,7 @@ __published:	// IDE-managed Components
 	void __fastcall TrackBarChange(TObject *Sender);
 	void __fastcall ConnectClick(TObject *Sender);
 	void __fastcall ReleaseClick(TObject *Sender);
-	void __fastcall EnterClick(TObject *Sender);
+	void __fastcall ConnectLocoClick(TObject *Sender);
 	void __fastcall btnStopClick(TObject *Sender);
 	void __fastcall SignalClick(TObject *Sender);
 	void __fastcall ClientSocketConnect(TObject *Sender, TCustomWinSocket *Socket);

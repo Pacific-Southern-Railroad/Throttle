@@ -478,14 +478,14 @@ object Throttle: TThrottle
       ParentFont = False
       TabOrder = 0
     end
-    object Enter: TButton
+    object ConnectLoco: TButton
       Left = 29
       Top = 57
       Width = 54
       Height = 25
-      Caption = 'Enter'
+      Caption = 'Connect'
       TabOrder = 1
-      OnClick = EnterClick
+      OnClick = ConnectLocoClick
     end
   end
   object ClientSocket: TClientSocket
